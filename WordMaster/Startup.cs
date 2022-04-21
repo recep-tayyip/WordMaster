@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
+using DataAccessLayer.Interfaces;
+using DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace WordMaster
@@ -29,6 +31,7 @@ namespace WordMaster
             services.AddDbContext<WordMasterDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MssqlConnection")));
             services.AddControllersWithViews();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +55,9 @@ namespace WordMaster
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+                    //pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Language}/{action=Index}/{id?}");
+        });
         }
     }
 }
