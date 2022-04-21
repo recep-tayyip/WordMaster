@@ -9,31 +9,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories
 {
-    public class LanguageRepository:ILanguageRepository
+    public class WordDefinitionRepository : IWordDefinitionRepository
     {
         private WordMasterDbContext _context;
-        public LanguageRepository(WordMasterDbContext context)
+        public WordDefinitionRepository(WordMasterDbContext context)
         {
             _context = context;
         }
 
-        public List<Language> List()
+        public List<WordDefinition> List()
         {
-            return _context.Set<Language>().ToList();
+            return _context.Set<WordDefinition>().ToList();
         }
 
-        public Language GetById(int id)
+        public WordDefinition GetById(int id)
         {
-            return _context.Set<Language>().Find(id);
+            return _context.Set<WordDefinition>().Find(id);
         }
 
-        public void Add(Language entity)
+        public void Add(WordDefinition entity)
         {
-            _context.Set<Language>().Add(entity);
+            _context.Set<WordDefinition>().Add(entity);
             _context.SaveChanges();
         }
 
-        public void Update(Language entity)
+        public void Update(WordDefinition entity)
         {
             _context.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
@@ -43,7 +43,7 @@ namespace DataAccessLayer.Repositories
         public void Delete(int id)
         {
             var deleted = GetById(id);
-            _context.Set<Language>().Remove(deleted);
+            _context.Set<WordDefinition>().Remove(deleted);
             _context.SaveChanges();
         }
 
