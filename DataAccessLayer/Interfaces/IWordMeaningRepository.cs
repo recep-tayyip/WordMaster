@@ -7,12 +7,7 @@ using DataAccessLayer.Entities;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface IWordMeaningRepository
+    public interface IWordMeaningRepository:IRepositoryBase<WordMeaning>
     {
-        List<WordMeaning> List();
-        WordMeaning GetById(int id);
-        void Add(WordMeaning entity);
-        void Update(WordMeaning entity);
-        void Delete(int id);
     }
 }

@@ -33,8 +33,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Word)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LangId)
+            <td title="@item.LangName">
+                @Html.DisplayFor(modelItem => item.LangCode)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

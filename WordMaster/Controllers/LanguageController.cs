@@ -38,27 +38,6 @@ namespace WordMaster.Controllers
             return View(model);
         }
 
-        // GET: LanguageController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: LanguageController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: LanguageController/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -101,21 +80,6 @@ namespace WordMaster.Controllers
         {
             _repository.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        // POST: LanguageController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

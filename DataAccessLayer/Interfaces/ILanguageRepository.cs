@@ -7,12 +7,7 @@ using DataAccessLayer.Entities;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface ILanguageRepository
+    public interface ILanguageRepository:IRepositoryBase<Language>
     {
-        List<Language> List();
-        Language GetById(int id);
-        void Add(Language entity);
-        void Update(Language entity);
-        void Delete(int id);
     }
 }

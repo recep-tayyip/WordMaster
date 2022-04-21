@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entities
 {
-    public class WordDefinition
+    public class WordDefinition:IEntity
     {
         public int Id { get; set; }
         public string Word { get; set; }
