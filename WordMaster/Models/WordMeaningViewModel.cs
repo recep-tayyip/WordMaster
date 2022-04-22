@@ -11,5 +11,9 @@ namespace WordMaster.Models
         public string Meaning { get; set; }
         public int LangId { get; set; }
         public int? WordDefinitionId { get; set; }
+
+        public List<WordDefinitionViewModel> WordDefinitions { get; set; }
+        public List<LanguageViewModel> Languages  { get; set; }
+
     }
 }
