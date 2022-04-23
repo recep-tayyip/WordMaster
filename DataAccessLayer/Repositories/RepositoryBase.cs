@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories
 {
-    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class, IEntity, new()
+    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T:class
     {
         protected WordMasterDbContext _context;
         public RepositoryBase(WordMasterDbContext context)

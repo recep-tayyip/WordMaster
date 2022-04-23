@@ -7,7 +7,7 @@ using DataAccessLayer.Entities;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface IRepositoryBase<T> where T:class,IEntity,new()
+    public interface IRepositoryBase<T> where T:class
     {
         List<T> List();
         T GetById(int id);

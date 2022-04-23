@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.Interfaces;
@@ -27,13 +28,14 @@ namespace WordMaster
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<WordMasterDbContext>();
-
+           
             services.AddDbContext<WordMasterDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MssqlConnection")));
             services.AddControllersWithViews();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<IWordDefinitionRepository, WordDefinitionRepository>();
             services.AddScoped<IWordMeaningRepository, WordMeaningRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

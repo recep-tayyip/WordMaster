@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WordMaster.Models.WordMeaningViewModel>
 
 @{
-    ViewData["Title"] = "WordMeaning";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
@@ -19,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.Meaning)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LangId)
+                @Html.DisplayNameFor(model => model.WordDefinitionId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WordDefinitionId)
+                @Html.DisplayNameFor(model => model.LangId)
             </th>
             <th></th>
         </tr>
@@ -37,15 +37,15 @@
                 @Html.DisplayFor(modelItem => item.Meaning)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LangId)
+                @Html.DisplayFor(modelItem => item.SelectedWordDefinition.Word)
+            </td>
+            <td title="@item.SelectedLang.Name">
+                @Html.DisplayFor(modelItem => item.SelectedLang.Code)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WordDefinitionId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id=item.Id}) |
-             
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id})
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
 }
