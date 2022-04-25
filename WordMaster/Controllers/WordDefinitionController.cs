@@ -14,7 +14,7 @@ namespace WordMaster.Controllers
     {
         private IWordDefinitionRepository _repository;
         private ILanguageRepository _languageRepository;
-        public WordDefinitionController(IWordDefinitionRepository repository,ILanguageRepository languageRepository)
+        public WordDefinitionController(IWordDefinitionRepository repository, ILanguageRepository languageRepository)
         {
             _repository = repository;
             _languageRepository = languageRepository;
@@ -22,14 +22,17 @@ namespace WordMaster.Controllers
         // GET: WordDefinitionController
         public ActionResult Index()
         {
-           
+
             return View();
         }
 
         public IActionResult ListPartial(string searchKeyword)
         {
             List<WordDefinitionViewModel> model = new List<WordDefinitionViewModel>();
-            List<WordDefinition> liste = _repository.List();
+            List<WordDefinition> liste = searchKeyword != null
+                ? _repository.List(searchKeyword)
+                : _repository.List();
+            
             foreach (WordDefinition item in liste)
             {
                 WordDefinitionViewModel wordDefinitionViewModel = new WordDefinitionViewModel()
@@ -71,7 +74,7 @@ namespace WordMaster.Controllers
             if (id.HasValue && id > 0)
             {
                 WordDefinition wordDefinition = _repository.GetById(id.Value);
-                
+
                 model.Id = wordDefinition.Id;
                 model.LangId = wordDefinition.LangId;
                 model.Word = wordDefinition.Word;
