@@ -24,7 +24,7 @@ namespace WordMaster.Controllers
             _wordDefinitionRepository = wordDefinitionRepository;
             _languageRepository = languageRepository;
         }
-        // GET: LanguageController
+        
         public ActionResult Index()
         {
             List<WordMeaningViewModel> model = new List<WordMeaningViewModel>();
@@ -32,12 +32,10 @@ namespace WordMaster.Controllers
             List<WordMeaning> liste = _repository.List();
             string serializedText = JsonSerializer.Serialize(liste);
             model = JsonSerializer.Deserialize<List<WordMeaningViewModel>>(serializedText);
-           
             
             return View(model);
         }
 
-        // GET: LanguageController/Edit/5
         public ActionResult Edit(int? id)
         {
             WordMeaningViewModel model = new WordMeaningViewModel();
@@ -63,13 +61,11 @@ namespace WordMaster.Controllers
             return View(model);
         }
 
-        // POST: LanguageController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(WordMeaningViewModel model)
         {
             WordMeaning entity = new WordMeaning();
-
             var serilazedText = JsonSerializer.Serialize(model);
             entity = JsonSerializer.Deserialize<WordMeaning>(serilazedText);
 
@@ -84,7 +80,6 @@ namespace WordMaster.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: LanguageController/Delete/5
         public ActionResult Delete(int id)
         {
             _repository.Delete(id);
