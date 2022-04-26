@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Interfaces;
+using Newtonsoft.Json.Linq;
 using WordMaster.Helpers;
 using WordMaster.Models;
 
@@ -24,7 +25,7 @@ namespace WordMaster.Controllers
             _wordDefinitionRepository = wordDefinitionRepository;
             _languageRepository = languageRepository;
         }
-        
+
         public ActionResult Index()
         {
             List<WordMeaningViewModel> model = new List<WordMeaningViewModel>();
@@ -32,7 +33,7 @@ namespace WordMaster.Controllers
             List<WordMeaning> liste = _repository.List();
             var serializedText = JsonSerializer.Serialize(liste);
             model = JsonSerializer.Deserialize<List<WordMeaningViewModel>>(serializedText);
-            
+
             return View(model);
         }
 
@@ -89,6 +90,21 @@ namespace WordMaster.Controllers
                 _repository.Add(entity);
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult AddNewMeaningToWord(WordMeaningViewModel model)
+        {
+            if (String.IsNullOrWhiteSpace(model.Meaning))
+                return Json(new { success = false, message = "anlam boş olamaz" });
+
+            WordMeaning entity = new WordMeaning();
+            entity.LangId = model.LangId;
+            entity.Meaning = model.Meaning;
+            entity.WordDefinitionId = model.WordDefinitionId;
+            _repository.Add(entity);
+
+            return Json(new { success = true });
         }
 
         public ActionResult Delete(int id)
