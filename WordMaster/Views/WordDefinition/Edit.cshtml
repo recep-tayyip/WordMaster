@@ -41,6 +41,11 @@
             </div>
         </form>
     </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+        <div class="row">buraya yeni ekleme gelecek</div>
+        <div class="row" id="ListMeaningPartial"> buraya meaning gelecek</div>
+    </div>
 </div>
 
 <div>
@@ -49,4 +54,16 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $().ready(function() {
+            @if (Model.Id > 0)
+                {
+                    <Text>
+            $("#ListMeaningPartial").load("/WordMeaning/ListPartial",{"defId":@Model.Id})
+                    </Text>
+                }
+        });
+    </script>
+
 }

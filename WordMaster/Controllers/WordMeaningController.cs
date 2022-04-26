@@ -30,10 +30,21 @@ namespace WordMaster.Controllers
             List<WordMeaningViewModel> model = new List<WordMeaningViewModel>();
 
             List<WordMeaning> liste = _repository.List();
-            string serializedText = JsonSerializer.Serialize(liste);
+            var serializedText = JsonSerializer.Serialize(liste);
             model = JsonSerializer.Deserialize<List<WordMeaningViewModel>>(serializedText);
             
             return View(model);
+        }
+
+        public IActionResult ListPartial(int defId)
+        {
+            List<WordMeaningViewModel> model = new List<WordMeaningViewModel>();
+
+            List<WordMeaning> liste = _repository.ListByDefId(defId);
+            var serializedText = JsonSerializer.Serialize(liste);
+            model = JsonSerializer.Deserialize<List<WordMeaningViewModel>>(serializedText);
+
+            return PartialView(model);
         }
 
         public ActionResult Edit(int? id)

@@ -22,7 +22,6 @@ namespace WordMaster.Controllers
         // GET: WordDefinitionController
         public ActionResult Index()
         {
-
             return View();
         }
 
