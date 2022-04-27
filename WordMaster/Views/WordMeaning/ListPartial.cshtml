@@ -18,21 +18,37 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Meaning)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SelectedLang.Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WordDefinitionId)
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meaning)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SelectedLang.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WordDefinitionId)
+                </td>
+                <td> <i class="bi bi-trash" onclick="DeleteMeaning(@item.Id)"></i></td>
+            </tr>
+        }
     </tbody>
 </table>
+<script>
+    function DeleteMeaning(id) {
+        $.post("/WordMeaning/DeleteByAjax",
+            { "id": id },
+            function(res) {
+                console.log(res);
+                if (res == true) {
+                    refresh();
+                } else {
+                    alert("beklenmedik hata oluştu!");
+                }
+            });
+    }
+</script>

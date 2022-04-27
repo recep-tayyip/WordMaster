@@ -112,5 +112,11 @@ namespace WordMaster.Controllers
             _repository.Delete(id);
             return RedirectToAction("Index");
         }
+
+        public IActionResult DeleteByAjax(int id)
+        {
+            _repository.Delete(id);
+            return Json(true);
+        }
     }
 }
