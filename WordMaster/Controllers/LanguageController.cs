@@ -38,11 +38,17 @@ namespace WordMaster.Controllers
             return View(model);
         }
 
+        public IActionResult Index1()
+        {
+            return View();
+        }
+
+
         // GET: LanguageController/Edit/5
         public ActionResult Edit(int? id)
         {
             LanguageViewModel model = new LanguageViewModel();
-            if (id.HasValue && id>0)
+            if (id.HasValue && id > 0)
             {
                 Language lang = _repository.GetById(id.Value);
                 model.Id = lang.Id;
@@ -64,7 +70,7 @@ namespace WordMaster.Controllers
                 Code = model.Code
             };
 
-            if (entity.Id>0)
+            if (entity.Id > 0)
             {
                 _repository.Update(entity);
             }
