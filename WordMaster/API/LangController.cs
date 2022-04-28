@@ -14,18 +14,17 @@ namespace WordMaster.API
     [Route("api/[controller]")]
     [ApiController]
     public class LangController : ControllerBase
-    { 
+    {
         ILanguageRepository _repository;
-
         public LangController(ILanguageRepository repository)
         {
             _repository = repository;
         }
-
         // GET: api/<LangController>
         [HttpGet]
         public IEnumerable<Language> Get()
         {
+
             return _repository.List();
         }
 
@@ -38,22 +37,36 @@ namespace WordMaster.API
 
         // POST api/<LangController>
         [HttpPost]
-        public bool Post([FromForm] Language entity)
+        public IActionResult Post([FromForm] Language entity)
         {
             _repository.Add(entity);
-            return true;
+            return Created("", true);
         }
 
         // PUT api/<LangController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public bool Put(int id, [FromForm] Language entity)
         {
+            _repository.Update(entity);
+            return true;
         }
 
         // DELETE api/<LangController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+
+            try
+            {
+                _repository.Delete(id);
+            }
+            catch (Exception)
+            {
+
+                //   return StatusCode(403);
+                return Forbid();
+            }
+            return Ok(true);
         }
     }
 }
