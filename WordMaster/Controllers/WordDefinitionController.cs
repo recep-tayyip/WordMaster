@@ -23,6 +23,7 @@ namespace WordMaster.Controllers
         public ActionResult Index()
         {
             WordDefIndexViewModel model = new WordDefIndexViewModel();
+
             var langs = _languageRepository.List();
             model.Langs = new List<LanguageViewModel>();
             foreach (var lng in langs)
